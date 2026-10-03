@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GhostVault | Secure Dashboard</title>
+    <style>
+        body { background-color: #0b0f19; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; }
+        .container { max-width: 600px; margin: 0 auto; background: #161e2e; padding: 30px; border-radius: 12px; border: 1px solid #1f293d; }
+        .badge-normal { background: #15803d; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .badge-duress { background: #b91c1c; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        ul { background: #0b0f19; padding: 15px 30px; border-radius: 8px; border: 1px solid #334155; }
+        li { margin: 8px 0; font-family: monospace; }
+        a { color: #f87171; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Vault Status: 
+            {% if mode == 'DURESS' %}
+                <span class="badge-duress">DURESS / DATA WIPED</span>
+            {% else %}
+                <span class="badge-normal">SECURE ACCESS</span>
+            {% endif %}
+        </h2>
+        <hr style="border-color: #334155;">
+
+        <h3>Stored Encrypted Artifacts:</h3>
+        <ul>
+            {% for file in data.files %}
+                <li>{{ file }}</li>
+            {% endfor %}
+        </ul>
+
+        <p><a href="/logout">← Lock & Terminate Session</a></p>
+    </div>
+</body>
+</html>
